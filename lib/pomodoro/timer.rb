@@ -5,6 +5,12 @@ module Pomodoro
     end
   end
 
+  class Say
+    def say(message)
+      system "say '#{message}'"
+    end
+  end
+
   class Timer
     def initialize(options = {})
       @output = options.fetch(:output, Stdout.new)
