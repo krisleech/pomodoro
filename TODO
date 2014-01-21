@@ -1,0 +1,22 @@
+https://github.com/celluloid/celluloid/wiki/Timers
+
+Objects!
+Specs
+Pluggable output ("say" is a Mac thing, we might want Growl notifications)
+Log
+Client(CLI)/Server(Process with open port/socket)
+
+Play WAV sounds.
+
+CLI options for:
+--time=60
+--break=0
+--daemon
+--nodaemon
+--output=SayAdapter,GrowlAdapter,StdoutAdapter
+--config=
+--help
+
+default config in yaml file, default to ~/.promodoro
+
+StdoutAdapter, only works if not daemonized - progressbar

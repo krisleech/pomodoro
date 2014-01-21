@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+# setup environment
+require 'bundler'
+Bundler.require
+
+# parse command line options
+length = (ARGV[0] || ENV['promodoro_length'] || 5).to_i
+@debugging = !!ENV['debug']
+
+
+def debug(&block)
+  yield if @debugging && block_given?
+  @debugging
+end
+
+debug do
+  puts 'Debugging mode: on'
+  puts length
+end
+
+# daemonize
+Process.daemon unless @debugging
+
+# start timer (move to object)
+timers = Timers.new
+
+timer = timers.after(length) do
+  system "say 'pomodoro up'"
+  system "say 'time for a break'"
+
+  break_timer = timers.every(1) do
+    # noop
+  end
+
+  10.downto(1) do |num|
+    timers.wait
+    system "say '#{num}'"
+  end
+
+end
+
+timers.wait
+
+system "say 'next promodoro?'"
