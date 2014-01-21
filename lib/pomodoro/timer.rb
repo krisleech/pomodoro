@@ -1,7 +1,23 @@
 module Pomodoro
-  class Timer
-    def start
+  class Stdout
+    def say(message)
+      puts message
+    end
+  end
 
+  class Timer
+    def initialize(options = {})
+      @output = options.fetch(:output, Stdout.new)
+    end
+
+    def start
+      output.say "Starting"
+    end
+
+    private
+
+    def output
+      @output
     end
   end
 end
