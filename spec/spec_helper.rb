@@ -1,4 +1,8 @@
+require 'bundler'
+Bundler.require(:default)
+
 require 'pomodoro'
+require 'timers'
 
 RSpec.configure do |config|
   config.filter_run :focus
