@@ -2,7 +2,9 @@
 
 # setup environment
 require 'bundler'
-Bundler.require
+Bundler.require(:default)
+
+require 'timers'
 
 # parse command line options
 length = (ARGV[0] || ENV['promodoro_length'] || 5).to_i
