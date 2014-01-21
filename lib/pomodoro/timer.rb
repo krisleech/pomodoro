@@ -11,6 +11,12 @@ module Pomodoro
     end
   end
 
+  class Nullout
+    def say(message)
+      # noop
+    end
+  end
+
   class Timer
     def initialize(options = {})
       @output = options.fetch(:output, Stdout.new)

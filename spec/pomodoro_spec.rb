@@ -13,7 +13,8 @@ describe Pomodoro do
     it 'waits 5 seconds' do
       started_at = Time.now
 
-      timer = Pomodoro::Timer.new(:duration => 5)
+      timer = Pomodoro::Timer.new(:output   => Pomodoro::Nullout.new,
+                                  :duration => 5)
       timer.start
 
       expect(Time.now - started_at).to be_within(0.05).of 5
