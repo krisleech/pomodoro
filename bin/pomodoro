@@ -1,18 +1,21 @@
 #!/usr/bin/env ruby
 
-# setup environment
 require 'bundler'
 Bundler.require(:default)
 
+require 'optparse'
 require 'timers'
 
-# parse command line options
-duration = (ARGV[0] || ENV['promodoro_duration'] || 5).to_i
-@debugging = !!ENV['debug']
+options = { :debug => false, :duration => 25 }
 
+OptionParser.new do |o|
+  o.on('-d', '--duration [TIME]', 'Duration (mins)') { |v| options[:duration] = v }
+  o.on(nil,  '--debug',    'Debug')                  { |v| options[:debug] = true }
+  o.on('-h', '--help',     'Help')                   { puts o; exit }
+  o.parse!
+end
 
-# daemonize
-Process.daemon unless @debugging
+Process.daemon unless options[:debug]
 
-timer = Pomodoro::Timer.new(:duration => duration)
+timer = Pomodoro::Timer.new(options)
 timer.start

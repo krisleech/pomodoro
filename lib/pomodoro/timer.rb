@@ -19,8 +19,8 @@ module Pomodoro
 
   class Timer
     def initialize(options = {})
-      @output = options.fetch(:output, Stdout.new)
-      @duration = options.fetch(:duration, 5)
+      @output   = options.fetch(:output, Stdout.new)
+      @duration = options.fetch(:duration).to_i
     end
 
     def start

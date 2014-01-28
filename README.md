@@ -13,8 +13,10 @@ $ gem install pomodoro
 ## Usage
 
 ```bash
-$ promodoro start
+$ promodoro
 ```
+
+The default timer is 25 mins.
 
 ## Contributing
 

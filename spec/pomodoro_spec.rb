@@ -6,7 +6,7 @@ describe Pomodoro do
       output = double('Output')
       expect(output).to receive(:say).with('Starting')
 
-      timer = Pomodoro::Timer.new(:output => output)
+      timer = Pomodoro::Timer.new(:output => output, :duration => 0)
       timer.start
     end
 
